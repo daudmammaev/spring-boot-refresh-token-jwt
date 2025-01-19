@@ -21,18 +21,22 @@ import java.util.List;
 public class BookController {
 	@Autowired
 	public TransactionalServicesImp transactionalServicesImp;
+	@Operation(summary = "transactional")
 	@PostMapping("/transactional")
 	public ResponseEntity<List<DtoBook>> transactional(long id, ArrayList<Book> list){
 		return ResponseEntity.ok(transactionalServicesImp.transactional(id,list));
 	}
+	@Operation(summary = "theMostPopularAuthor")
 	@GetMapping("/theMostPopularAuthor")
 	public ResponseEntity<DtoAutor> theMostPopularAuthor(LocalDate start, LocalDate finish){
 		return ResponseEntity.ok(transactionalServicesImp.theMostPopularAuthor(start,finish));
 	}
+	@Operation(summary = "theMostReadingClient")
 	@GetMapping("/theMostReadingClient")
 	public ResponseEntity<DtoReader> theMostReadingClient(){
 		return ResponseEntity.ok(transactionalServicesImp.theMostReadingClient());
 	}
+	@Operation(summary = "listOfAllReadersOfUndeliveredBooks")
 	@GetMapping("/listOfAllReadersOfUndeliveredBooks")
 	public ResponseEntity<List<DtoReader>> listOfAllReadersOfUndeliveredBooks(){
 		return ResponseEntity.ok(transactionalServicesImp.listOfAllReadersOfUndeliveredBooks());
